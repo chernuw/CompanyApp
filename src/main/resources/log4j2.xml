@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration packages="by.rgotovko.dao">
+    <Properties>
+        <Property name="hiblog">logs\hib\</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="HIBLOG" fileName="${hiblog}hib.log"
+                     filePattern="${hiblog}archive\hib-$${date:MM-dd-yyyy}.%i.log.gz">
+            <PatternLayout pattern="%d [%t] %p %C.%M():%L - %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1 MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="by.rgotovko.dao" level="trace">
+            <AppenderRef ref="HIBLOG"/>
+        </Logger>
+    </Loggers>
+</Configuration>

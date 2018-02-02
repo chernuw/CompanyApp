@@ -1,0 +1,51 @@
+body{
+    background: #edeef0;
+    overflow: auto;
+}
+#data_column{
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+.alert{
+    display: none;
+}
+#employee_photo{
+    padding: 0;
+}
+.labeled{
+    padding-left: 0;
+}
+.page_block{
+    background: #ffffff;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin: 15px;
+}
+.page_info_wrap{
+    padding: 15px 20px;
+}
+.page_photo{
+    padding: 15px;
+}
+#profile_edit_button{
+    margin-top: 10px;
+}
+.profile_info{
+    line-height: 150%;
+}
+.profile_info_label{
+    color: #828282;
+}
+.profile_info_block{
+    padding: 0 0 29px;
+    border-top: 1px solid #e7e8ec;
+}
+.profile_info_header{
+    background: #ffffff;
+}
+.profile_info_header_wrap{
+    margin: -11px 0 4px;
+}
+.profile_info_row{
+    padding-top: 5px;
+}
