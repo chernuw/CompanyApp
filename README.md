@@ -15,6 +15,10 @@ Test project for IBA
 12. Bootstrap 4
 13. jQuery
 14. Ajax
+# Sign in
+Login/password
+1. admin/1234
+2. user/1234
 ## Database schema
 ![alt text](https://pp.userapi.com/c840637/v840637528/4f459/1jlHqfYKfBw.jpg)
 # Interface
