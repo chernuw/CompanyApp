@@ -10,5 +10,5 @@ Test project for IBA
 7. Gson 2.8.2
 8. jBCrypt 0.4 - for hashing passwords
 9. Maven 3.5.2
-9.1 Maven compiler plugin 3.7.0
-9.2 TomCat7 maven plugin 2.2
+10. Maven compiler plugin 3.7.0
+11. TomCat7 maven plugin 2.2
