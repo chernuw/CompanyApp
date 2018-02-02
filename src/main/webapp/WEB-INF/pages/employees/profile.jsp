@@ -39,7 +39,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="photoUploadTitle">Upload photo</h5>
+                                        <h5 class="modal-title" id="photoUploadTitle">Edit photo</h5>
                                         <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="close">
                                             <span aria-hidden="true">&times;</span>
