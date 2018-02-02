@@ -1,6 +1,6 @@
 # CompanyApp
 Test project for IBA
-# Tecnologies
+# Technologies
 1. Java SE 8
 2. Servlets 3.1
 3. TomCat 8
