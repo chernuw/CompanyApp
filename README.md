@@ -20,7 +20,7 @@ Login/password
 1. admin/1234
 2. user/1234
 ## Database schema
-![alt text](https://pp.userapi.com/c840637/v840637528/4f459/1jlHqfYKfBw.jpg)
+![alt text](https://pp.userapi.com/c830709/v830709665/5c4d2/TH8qsvXsia8.jpg)
 # Interface
 ## Employee page
 ![alt text](https://pp.userapi.com/c840639/v840639528/4d296/45VcGE-I1Sg.jpg)
