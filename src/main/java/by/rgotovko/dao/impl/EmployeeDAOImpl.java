@@ -104,40 +104,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void deleteEmployee(Employee employee) throws DAOException {
-        logger.trace("EmployeeDAOImpl.deleteEmployee(" + employee.getId() + ")");
-        Transaction transaction = null;
-        try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            transaction = session.beginTransaction();
-            session.delete(employee);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DAOException(e);
-        }
-    }
-
-    @Override
-    public void addEmployee(Employee employee) throws DAOException {
-        logger.trace("EmployeeDAOImpl.addEmployee()");
-        Transaction transaction = null;
-        try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            transaction = session.beginTransaction();
-            session.save(employee);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DAOException(e);
-        }
-    }
-
-    @Override
     public boolean isValidValue(String param, String value, Integer empId) throws DAOException {
         logger.trace("EmployeeDAOImpl.isValidValue(" + param + "," + value + "," + empId + ")");
         Transaction transaction = null;

@@ -14,10 +14,6 @@ public interface EmployeeDAO {
 
     void updateEmployee(Employee employee) throws DAOException;
 
-    void deleteEmployee(Employee employee) throws DAOException;
-
-    void addEmployee(Employee employee) throws DAOException;
-
     boolean isValidValue(String param, String value, Integer empId) throws DAOException;
 
 }
