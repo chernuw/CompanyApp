@@ -15,24 +15,47 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.time.LocalDate;
 
-@WebServlet(name = "EmployeeAdd", urlPatterns = "/EmployeeAdd")
-public class EmployeeAdd extends HttpServlet {
+@WebServlet(name = "EmployeeSave", urlPatterns = "/EmployeeSave")
+public class EmployeeSave extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             UserDAO userDAO = DAOFactory.getUserDAO();
-            User user = createUser(request);
-            userDAO.addUser(user);
-            Employee employee = createEmployee(request, user);
+            User user;
+            Employee employee;
+            if (request.getParameter("employeeId") == null) {
+                user = createUser(request);
+                userDAO.addUser(user);
+                employee = createEmployee(request, user);
+            } else {
+                user = userDAO.getUserById(Integer.parseInt(request.getParameter("employeeId")));
+                employee = user.getEmployee();
+                fillEmployee(request, employee);
+                if (request.getSession().getAttribute("userRole").equals("ADMIN")) {
+                    employee.setDepartment(getDepartment(request));
+                    employee.setPosition(getPosition(request));
+                    employee.setHireDate(LocalDate.parse(request.getParameter("hireDate")));
+                }
+            }
             user.setEmployee(employee);
             userDAO.updateUser(user);
+//            TODO: ajax for save
             response.sendRedirect("EmployeeList");
         } catch (DAOException e) {
             throw new ServletException(e);
         }
+    }
+
+    private void fillEmployee(HttpServletRequest request, Employee employee) {
+        employee.setFirstName(request.getParameter("firstName"));
+        employee.setMiddleName(request.getParameter("middleName"));
+        employee.setLastName(request.getParameter("lastName"));
+        employee.setBirthDate(LocalDate.parse(request.getParameter("birthDate")));
+        employee.setEmail(request.getParameter("email"));
+        employee.setPhone(request.getParameter("phone"));
+        employee.setAddress(request.getParameter("address"));
     }
 
     private Employee createEmployee(HttpServletRequest request, User user) throws ServletException {
