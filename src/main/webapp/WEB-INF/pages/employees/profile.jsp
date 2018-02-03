@@ -15,7 +15,6 @@
     <script type="text/javascript" src="resources/js/profile/fillingPage.js"></script>
     <script type="text/javascript" src="resources/js/profile/changePassword.js"></script>
     <script type="text/javascript" src="resources/js/profile/photoActions.js"></script>
-    <script type="text/javascript" src="resources/js/profile/deleteEmployee.js"></script>
     <script type="text/javascript" src="resources/js/validators.js"></script>
 </head>
 <body>
@@ -174,40 +173,11 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="EmployeeUpdate" id="updateEmployeeForm" method="post"
+                                        <form action="EmployeeSave" id="updateEmployeeForm" method="post"
                                               class="needs-validation" novalidate>
-                                            <input type="hidden" name="employeeId" id="idEmployeeUpdate">
+                                            <input type="hidden" name="employeeId" id="employeeId">
                                             <div class="form-group">
                                                 <div class="modal-body">
-                                                    <div class="form-group form-row">
-                                                        <label class="col-3 col-form-label" for="login">Login:</label>
-                                                        <input type="text" id="login" name="login" required
-                                                               maxlength="40" placeholder="Login"
-                                                               class="form-control col-9">
-                                                        <div class="invalid-feedback" id="login_message"></div>
-                                                    </div>
-                                                    <c:if test="${sessionScope.userRole eq 'ADMIN'}">
-                                                        <div class="form-group form-row">
-                                                            <label class="col-3 col-form-label" for="role">Role:
-                                                            </label>
-                                                            <select id="role" name="role" class="form-control col-9"
-                                                                    required>
-                                                            </select>
-                                                        </div>
-                                                    </c:if>
-                                                    <div class="form-group form-row">
-                                                        <label class="col-3 col-form-label" for="passwordChangeButton">
-                                                            Password:
-                                                        </label>
-                                                        <%--button for calling modal change password--%>
-                                                        <button class="btn btn-info col-9" id="passwordChangeButton"
-                                                                type="button" data-toggle="modal"
-                                                                data-target="#changePasswordModal"
-                                                                data-dismiss="modal">
-                                                            Change password
-                                                        </button>
-                                                    </div>
-                                                    <hr>
                                                     <div class="form-group form-row">
                                                         <label class="col-3 col-form-label" for="firstName">First
                                                             Name:</label>
@@ -257,41 +227,35 @@
                                                                maxlength="100" placeholder="Address"
                                                                class="form-control col-9">
                                                     </div>
-                                                    <c:if test="${sessionScope.userRole eq 'ADMIN'}">
-                                                        <hr>
-                                                        <div class="form-group form-row">
-                                                            <label class="col-3 col-form-label"
-                                                                   for="department">Department:</label>
-                                                            <select id="department" name="department"
-                                                                    class="form-control col-9"></select>
-                                                        </div>
-                                                        <div class="form-group form-row">
-                                                            <label class="col-3 col-form-label"
-                                                                   for="position">Position:</label>
-                                                            <select id="position" name="position" required
-                                                                    class="form-control col-9"></select>
-                                                        </div>
-                                                        <div class="form-group form-row">
-                                                            <label class="col-3 col-form-label" for="hireDate">Hire
-                                                                Date:</label>
-                                                            <input type="text" id="hireDate" name="hireDate"
-                                                                   class="form-control col-7"
-                                                                   placeholder="YYYY-MM-DD"
-                                                                   required readonly>
-                                                        </div>
-                                                    </c:if>
+                                                    <hr>
+                                                    <div class="form-group form-row">
+                                                        <label class="col-3 col-form-label" for="login">Login:</label>
+                                                        <input type="text" id="login" name="login" required
+                                                               maxlength="40" placeholder="Login"
+                                                               class="form-control col-9">
+                                                        <div class="invalid-feedback" id="login_message"></div>
+                                                    </div>
+                                                    <div class="form-group form-row">
+                                                        <label class="col-3 col-form-label" for="passwordChangeButton">
+                                                            Password:
+                                                        </label>
+                                                        <%--button for calling modal change password--%>
+                                                        <button class="btn btn-info col-9" id="passwordChangeButton"
+                                                                type="button" data-toggle="modal"
+                                                                data-target="#changePasswordModal"
+                                                                data-dismiss="modal">
+                                                            Change password
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">
                                                         Close
                                                     </button>
-                                                    <c:if test="${sessionScope.userRole eq 'ADMIN'}">
-                                                        <button type="button" class="btn btn-danger"
-                                                                onclick="deleteEmployee();">
-                                                            Delete
-                                                        </button>
-                                                    </c:if>
+                                                    <button type="reset" class="btn btn-secondary">
+                                                        Reset
+                                                    </button>
                                                     <input type="submit" class="btn btn-primary" value="Save"/>
                                                 </div>
                                             </div>
