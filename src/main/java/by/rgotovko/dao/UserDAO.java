@@ -12,5 +12,7 @@ public interface UserDAO {
 
     void updateUser(User user) throws DAOException;
 
+    void deleteUser(User user) throws DAOException;
+
     boolean isValidValue(String param, String value, Integer empId) throws DAOException;
 }

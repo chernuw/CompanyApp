@@ -99,6 +99,23 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public void deleteUser(User user) throws DAOException {
+        logger.trace("UserDAOImpl.deleteUser(" + user.getId() + ")");
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.delete(user);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DAOException(e);
+        }
+    }
+
+    @Override
     public boolean isValidValue(String param, String value, Integer empId) throws DAOException {
         logger.trace("UserDAOImpl.isValidValue(" + param + "," + value + "," + empId + ")");
         Transaction transaction = null;
