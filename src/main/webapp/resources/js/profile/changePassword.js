@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     $("#newPassword").on("change", function () {
         diffNewAndRepPass();
+        $("#passSucChangAlert").css('display', 'none');
     });
 
     $("#currentPassword").on("change", function () {
@@ -14,8 +15,9 @@ $(document).ready(function () {
 
     function diffNewAndRepPass() {
         if($("#newPassword").val() !== $("#repeatPassword").val()){
-            $("#repeatPassword").removeClass("is-valid");
-            $("#repeatPassword").addClass("is-invalid");
+            $("#repeatPassword")
+                .removeClass("is-valid")
+                .addClass("is-invalid");
             $("#passDangAlert").css('display', 'block').text("New password and repeated new password did" +
                 " not match.");
             return true;
@@ -44,8 +46,9 @@ $(document).ready(function () {
                         switch (message) {
                             case 'Invalid current password': {
                                 document.getElementById("changePasswordForm").classList.remove('was-validated');
-                                $("#currentPassword").removeClass("is-valid");
-                                $("#currentPassword").addClass("is-invalid");
+                                $("#currentPassword")
+                                    .removeClass("is-valid")
+                                    .addClass("is-invalid");
                                 break;
                             }
                             default: {
@@ -53,6 +56,7 @@ $(document).ready(function () {
                             }
                         }
                     } else {
+                        $("#changePasswordForm")[0].reset();
                         $("#passSucChangAlert").css('display', 'block');
                     }
                 })
@@ -64,5 +68,6 @@ $(document).ready(function () {
 
     $("#changePasswordModal").on('hidden.bs.modal', function () {
         $('#updateProfileModal').modal('show');
+        $("#changePasswordForm")[0].reset();
     });
 });
