@@ -20,7 +20,7 @@ $(document).ready(function () {
         function validLogin() {
             $.post("LoginValidator", {
                 login: $("#login").val(),
-                empId: $("#idEmployeeUpdate").val()
+                empId: $("#employeeId").val()
             }).done(function (data) {
                 if (data.valid === true) {
                     $("#login_message").text("");
@@ -37,7 +37,7 @@ $(document).ready(function () {
         function validEmail() {
             $.post("EmailValidator", {
                 email: $("#email").val(),
-                empId: $("#idEmployeeUpdate").val()
+                empId: $("#employeeId").val()
             }, function (data) {
                 if (data.valid === true) {
                     $("#email_message").text("");
@@ -63,7 +63,7 @@ $(document).ready(function () {
         }
 
 
-        var addEmployeeForm = document.getElementById("addEmployeeForm");
+        var addEmployeeForm = document.getElementById("employeeForm");
         if (addEmployeeForm != null) {
             addEmployeeForm.addEventListener('submit', function (event) {
                 if (validE === false || addEmployeeForm.checkValidity() === false) {

@@ -9,7 +9,7 @@ function fillPage() {
             $("#employee_photo").attr("src", "EmployeePhoto?id=" + id);
             $('#idEmployeePhoto').val(list.employeeId);
             $('#idEmployeePassword').val(list.employeeId);
-            $('#idEmployeeUpdate').val(list.employeeId);
+            $('#employeeId').val(list.employeeId);
             $('#login').val(list.user.login);
             roles.forEach(function (value) {
                 if (value === list.user.role) {

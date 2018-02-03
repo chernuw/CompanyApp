@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <title>Employees</title>
@@ -14,6 +14,8 @@
     <script type="text/javascript" src="resources/js/popper.min.js"></script>
     <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="resources/js/list/addDepartmentPosition.js"></script>
+    <script type="text/javascript" src="resources/js/list/deleteEmployee.js"></script>
+    <script type="text/javascript" src="resources/js/list/employeeModal.js"></script>
     <script type="text/javascript" src="resources/js/list/employeesTable.js"></script>
     <script type="text/javascript" src="resources/js/list/positionDepartmentList.js"></script>
     <script type="text/javascript" src="resources/js/validators.js"></script>
@@ -26,6 +28,7 @@
 <div class="container-fluid">
     <div class="row">
         <%--Left menu--%>
+        <%--TODO: add edit and delete data on this modals--%>
         <nav class="col-2 bg-light border">
             <div class="collapse bd-links">
                 <div class="bd-toc-item">
@@ -106,25 +109,26 @@
                 <div class="justify-content-start col-6">
                     <%--Button for showing modal adding employee--%>
                     <button type="button" id="profile_edit_button" data-toggle="modal"
-                            data-target="#addProfileModal"
+                            data-target="#profileModal"
                             class="btn btn-success">
                         New...
                     </button>
-                    <%--Modal adding employee--%>
-                    <div id="add_profile_modal">
-                        <div class="modal fade" id="addProfileModal" tabindex="-1" role="dialog"
-                             aria-labelledby="addProfileTitle" aria-hidden="true">
+                    <%--Modal employee--%>
+                    <div id="profile_modal">
+                        <div class="modal fade" id="profileModal" tabindex="-1" role="dialog"
+                             aria-labelledby="profileTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="addProfileTitle">Add profile</h5>
+                                        <h5 class="modal-title" id="profileTitle">Enter data</h5>
                                         <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="EmployeeAdd" id="addEmployeeForm" method="post" novalidate
+                                    <form action="EmployeeSave" id="employeeForm" method="post" novalidate
                                           class="needs-validation">
+                                        <input type="hidden" name="employeeId" id="employeeId">
                                         <div class="form-group">
                                             <div class="modal-body">
                                                 <div class="form-group form-row">
@@ -197,15 +201,40 @@
                                                            placeholder="YYYY-MM-DD"
                                                            required readonly>
                                                 </div>
+                                                <div id="loginPasswordSection">
+                                                    <hr>
+                                                    <div class="form-group form-row">
+                                                        <label class="col-3 col-form-label" for="login">Login:</label>
+                                                        <input type="text" id="login" name="login" required
+                                                               maxlength="40" placeholder="Login"
+                                                               class="form-control col-9">
+                                                        <div class="invalid-feedback" id="login_message"></div>
+                                                    </div>
+                                                    <div class="form-group form-row">
+                                                        <label class="col-3 col-form-label" for="passwordChangeButton">
+                                                            Password:
+                                                        </label>
+                                                        <%--button for calling modal change password--%>
+                                                        <%--TODO: add modal change pass on this page--%>
+                                                        <button class="btn btn-info col-9" id="passwordChangeButton"
+                                                                type="button" data-toggle="modal"
+                                                                data-target="#changePasswordModal"
+                                                                data-dismiss="modal">
+                                                            Change password
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                         data-dismiss="modal">
                                                     Close
                                                 </button>
-                                                <button type="reset" class="btn btn-secondary"
-                                                        data-dismiss="modal">
+                                                <button type="reset" class="btn btn-secondary">
                                                     Reset
+                                                </button>
+                                                <button type="button" class="btn btn-danger" id="btnDeleteEmployee">
+                                                    Delete
                                                 </button>
                                                 <input type="submit" class="btn btn-primary" value="Save"/>
                                             </div>
@@ -216,7 +245,7 @@
                         </div>
                     </div>
                 </div>
-                <%--Selections for oredering and count employees on page--%>
+                <%--Selections for oredering and showing number of employees on page--%>
                 <div class="justify-content-end btn-toolbar col-6" role="toolbar">
                     <div class="input-group col-7">
                         <div class="input-group-prepend">
@@ -245,7 +274,7 @@
                     </div>
                 </div>
             </div>
-
+<%--TODO: amount employees rework for ajax--%>
             <label for="tbl">Amount employees: <span id="amountEmployees">${amountEmployees}</span></label>
             <div id="tbl" class="table-responsive"></div>
             <hr>

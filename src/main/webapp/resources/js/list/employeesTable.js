@@ -23,8 +23,11 @@ function buildEmployeesTable(page) {
             for (var i = 0; i < list.length; i++) {
                 var row$ = $('<tr/>');
                 row$.append($('<td/>').html('<img src="EmployeePhoto?id=' + list[i].employeeId + '" name="emplPhoto" class="rounded"/>'));
-                row$.append($('<td/>').html('<a href="EmployeeProfile?id=' + list[i].employeeId + '">'
-                    + list[i].firstName + ' ' + list[i].lastName + '</a><br/>'
+                row$.append($('<td/>').html(
+                    '<a href="javascript:void(0);" onclick="fillModal(' + list[i].employeeId+');' +
+                    ' $(\'#profileModal\').modal(\'show\')">' + list[i].firstName + ' ' + list[i].lastName +
+                    '</a>' +
+                    '<br/>'
                     + '&#128222;' + list[i].phone + '<br/>'
                     + '&#128231;'+ list[i].email));
                 row$.append($('<td/>').html(list[i].department));
@@ -39,7 +42,7 @@ function buildEmployeesTable(page) {
             }
             var pagi$ = $('<ul class="pagination justify-content-center" id="pagi"/>');
             $("#pagination").append(pagi$);
-            var amountOfPages = (amountEmpl % amountOnPage == 0) ? (amountEmpl / amountOnPage) : (amountEmpl / amountOnPage + 1);
+            var amountOfPages = (amountEmpl % amountOnPage === 0) ? (amountEmpl / amountOnPage) : (amountEmpl / amountOnPage + 1);
             for (var j = 1; j <= amountOfPages; j++) {
                 if (j === page) {
                     pagi$.append($("<li onclick='return false;' class='page-item active'/>")
