@@ -1,22 +1,15 @@
-#drop_down_menu {
-    position: absolute;
-    transform: translate3d(-61px, 38px, 0px);
-    top: 0px;
-    left: 0px;
-    will-change: transform;
-}
-#buttonDropMenu{
-    text-decoration: none;
-    color: #ffffff;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-}
-.a{
-    text-decoration: none;
-}
-.custom-header{
+.custom-header {
     background: #4a76a8;
 }
-#logo{
+
+#logo {
     color: #ffffff;
     font-size: 30px;
+}
+
+#logout {
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 20px;
+    text-decoration: none;
 }
