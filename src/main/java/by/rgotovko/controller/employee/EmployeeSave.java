@@ -33,6 +33,7 @@ public class EmployeeSave extends HttpServlet {
                 user = userDAO.getUserById(Integer.parseInt(request.getParameter("employeeId")));
                 employee = user.getEmployee();
                 fillEmployee(request, employee);
+                user.setLogin(request.getParameter("login"));
                 if (request.getSession().getAttribute("userRole").equals("ADMIN")) {
                     employee.setDepartment(getDepartment(request));
                     employee.setPosition(getPosition(request));
@@ -41,8 +42,11 @@ public class EmployeeSave extends HttpServlet {
             }
             user.setEmployee(employee);
             userDAO.updateUser(user);
-//            TODO: ajax for save
-            response.sendRedirect("EmployeeList");
+            if (request.getSession().getAttribute("userRole").equals("ADMIN")) {
+                response.sendRedirect("EmployeeList");
+            }else{
+                response.sendRedirect("EmployeeProfile?id="+user.getId());
+            }
         } catch (DAOException e) {
             throw new ServletException(e);
         }
