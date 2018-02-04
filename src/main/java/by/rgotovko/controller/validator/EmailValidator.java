@@ -17,7 +17,7 @@ public class EmailValidator extends HttpServlet {
         try {
             String email = request.getParameter("email");
             int empId;
-            if (request.getParameter("empId") != null) {
+            if (!request.getParameter("empId").equals("")) {
                 empId = Integer.parseInt(request.getParameter("empId"));
             } else {
                 empId = 0;

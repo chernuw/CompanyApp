@@ -25,7 +25,7 @@ public class EmployeeSave extends HttpServlet {
             UserDAO userDAO = DAOFactory.getUserDAO();
             User user;
             Employee employee;
-            if (request.getParameter("employeeId") == null) {
+            if (request.getParameter("employeeId").equals("")) {
                 user = createUser(request);
                 userDAO.addUser(user);
                 employee = createEmployee(request, user);
