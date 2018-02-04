@@ -12,8 +12,10 @@ $(document).ready(function () {
             var id = $('#employeeId').val();
             if (id === "") {
                 $("#loginPasswordSection").attr("hidden", "true");
+                $("#login").attr("disabled", "disabled");
                 $("#btnDeleteEmployee").attr("hidden", "true");
             } else {
+                $("#login").removeAttr("disabled");
                 $("#btnDeleteEmployee").attr("onclick", "deleteEmployee(" + id + ");");
             }
         });
