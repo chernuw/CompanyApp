@@ -1,4 +1,4 @@
-package by.rgotovko.controller.security;
+package by.rgotovko.controller.security.filters;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -20,12 +20,14 @@ public class RoleFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
         String queryString = httpRequest.getQueryString();
         HttpSession session = httpRequest.getSession();
-        String id = "";
-        if(httpRequest.getRequestURI().endsWith("EmployeeProfile")){
-            id = queryString.substring(queryString.lastIndexOf("id=") + 3);
-        }
-        if (session.getAttribute("userRole").toString().equals("ADMIN")
-                || (session.getAttribute("userId").toString().equals(id))) {
+        if (httpRequest.getRequestURI().endsWith("EmployeeProfile")
+                && session.getAttribute("userRole").toString().equals("USER")
+//                allow access if userId in session equal requested url 'EmployeeProfile?id=*'
+                && session.getAttribute("userId").toString().equals(
+                queryString.substring(queryString.lastIndexOf("id=") + 3))) {
+            filterChain.doFilter(servletRequest, servletResponse);
+        } else if (httpRequest.getRequestURI().endsWith("EmployeeList")
+                && session.getAttribute("userRole").toString().equals("ADMIN")) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             httpResponse.sendRedirect("AccessDenied");
@@ -34,12 +36,9 @@ public class RoleFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
-
 
     @Override
     public void destroy() {
-
     }
 }
