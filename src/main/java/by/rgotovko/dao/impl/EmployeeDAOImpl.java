@@ -29,9 +29,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             CriteriaQuery<Employee> query = builder.createQuery(Employee.class);
             Root<Employee> root = query.from(Employee.class);
             query.select(root);
-            List<Employee> employees =session.createQuery(query).getResultList();
+            List<Employee> employees = session.createQuery(query).getResultList();
             transaction.commit();
-            return  employees;
+            return employees;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -78,6 +78,28 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             Employee employee = session.get(Employee.class, id);
             transaction.commit();
             return employee;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DAOException(e);
+        }
+    }
+
+    @Override
+    public int getEmployeesAmount() throws DAOException {
+        logger.trace("EmployeeDAOImpl.getEmployeesAmount()");
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            transaction = session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Long> query = builder.createQuery(Long.class);
+            Root<Employee> root = query.from(Employee.class);
+            query.select(builder.count(root));
+            int amount = Math.toIntExact(session.createQuery(query).getSingleResult());
+            transaction.commit();
+            return amount;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
