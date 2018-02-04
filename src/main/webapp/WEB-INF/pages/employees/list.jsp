@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Employees</title>
@@ -216,7 +216,6 @@
                                                             Password:
                                                         </label>
                                                         <%--button for calling modal change password--%>
-                                                        <%--TODO: add modal change pass on this page--%>
                                                         <button class="btn btn-info col-9" id="passwordChangeButton"
                                                                 type="button" data-toggle="modal"
                                                                 data-target="#changePasswordModal"
@@ -337,7 +336,7 @@
                             <option value="hireDate">Work Experience</option>
                         </select>
                     </div>
-                    <div class="input-group col-4">
+                    <div class="input-group col-5">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="onPageText">On page: </span>
                         </div>
@@ -351,11 +350,19 @@
                     </div>
                 </div>
             </div>
-<%--TODO: amount employees rework for ajax--%>
-            <label for="tbl">Amount employees: <span id="amountEmployees">${amountEmployees}</span></label>
-            <div id="tbl" class="table-responsive"></div>
+            <label for="tbl">Amount employees: <span id="amountEmployees"></span></label>
+            <div id="tbl" class="table-responsive">
+                <table class="table table-responsive-sm" id="emplTable">
+                    <thead id="employeeTableHead">
+                    </thead>
+                    <tbody id="employeeTableBody">
+                    </tbody>
+                </table>
+            </div>
             <hr>
-            <div id="pagination"></div>
+            <div id="pagination">
+                <ul class="pagination justify-content-center" id="pagi"></ul>
+            </div>
         </main>
     </div>
 </div>
