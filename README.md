@@ -19,6 +19,8 @@ Test project for IBA
 Login/password
 1. admin/1234
 2. user/1234
+# Nuance
+Deleting and editing departments and positions available  only in database
 ## Database schema
 ![alt text](https://pp.userapi.com/c830709/v830709665/5c4d2/TH8qsvXsia8.jpg)
 # Interface
