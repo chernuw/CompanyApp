@@ -1,63 +1,78 @@
 function buildEmployeesTable(page) {
-    var request = new XMLHttpRequest();
+
+    $.post("EmployeesAmount")
+        .done(function (data) {
+            $("#amountEmployees").text(data.amount);
+        })
+        .fail(function () {
+            alert("Failed to get the number of employees")
+        });
+
     var amountOnPage = document.getElementById("amountEmployeesOnPage").value;
-    var amountEmpl = document.getElementById("amountEmployees").innerText;
     var orderField = document.getElementById("orderByOnPage").value;
 
-    request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            if ($("#emplTable")) {
-                $("#emplTable").remove();
-            }
-            var table$ = $('<table class="table table-responsive-sm" id="emplTable"/>');
-            $("#tbl").append(table$);
-            var list = JSON.parse(this.responseText);
-
+    $.post("EmployeeListData", {
+        page: page,
+        amountOnPage: amountOnPage,
+        orderField: orderField
+    })
+        .done(function (data) {
+            $("#employeeTableHead").empty();
+            $("#employeeTableBody").empty();
+            //table head
             var columns = [' ', 'Contact Info', 'Department', 'Position', 'In Company'];
-            var headerTr$ = $('<tr/>');
-            columns.forEach(function (item) {
-                headerTr$.append($('<th/>').html(item));
+            columns.forEach(function (value) {
+                $('<th/>').html(value).appendTo("#employeeTableHead");
             });
-            table$.append(headerTr$);
-            //filling table data
-            for (var i = 0; i < list.length; i++) {
-                var row$ = $('<tr/>');
-                row$.append($('<td/>').html('<img src="EmployeePhoto?id=' + list[i].employeeId + '" name="emplPhoto" class="rounded"/>'));
-                row$.append($('<td/>').html(
-                    '<a href="javascript:void(0);" onclick="fillModal(' + list[i].employeeId+');' +
-                    ' $(\'#profileModal\').modal(\'show\')">' + list[i].firstName + ' ' + list[i].lastName +
-                    '</a>' +
-                    '<br/>'
-                    + '&#128222;' + list[i].phone + '<br/>'
-                    + '&#128231;'+ list[i].email));
-                row$.append($('<td/>').html(list[i].department));
-                row$.append($('<td/>').html(list[i].position));
-                row$.append($('<td/>').html(getWorkExperience(list[i].hireDate) + " years"));
-                $(table$).append(row$);
-            }
+            //table body
+            var list = JSON.parse(data);
+            $.each(list, function (i, item) {
+                $('<tr>').append(
+                    $('<td>')
+                        .append($('<img>')
+                            .attr("src", "EmployeePhoto?id=" + item.employeeId)
+                            .attr("name", "emplPhoto")
+                            .addClass("rounded")),
+                    $('<td>')
+                        .append(
+                            $('<a>')
+                                .attr("href", "javascript:void(0);")
+                                .attr("onclick", "fillModal(" + item.employeeId + "); " +
+                                    "$('#profileModal').modal('show');")
+                                .text(item.firstName + ' ' + item.lastName),
+                            $('<div>').html('&#128222;' + " " + item.phone),
+                            $('<div>').html('&#128231;' + " " + item.email)
+                        ),
+                    $('<td>').text(item.department),
+                    $('<td>').text(item.position),
+                    $('<td>').text(getWorkExperience(item.hireDate) + " years")
+                ).appendTo('#employeeTableBody');
+            });
 
-            //Pagination select
-            if ($("#pagi")) {
-                $("#pagi").remove();
-            }
-            var pagi$ = $('<ul class="pagination justify-content-center" id="pagi"/>');
-            $("#pagination").append(pagi$);
+            //pagination
+            $("#pagi").empty();
+            var amountEmpl = document.getElementById("amountEmployees").innerText;
             var amountOfPages = (amountEmpl % amountOnPage === 0) ? (amountEmpl / amountOnPage) : (amountEmpl / amountOnPage + 1);
             for (var j = 1; j <= amountOfPages; j++) {
                 if (j === page) {
-                    pagi$.append($("<li onclick='return false;' class='page-item active'/>")
-                        .html("<span class='page-link'>" + j + "</span>"));
+                    $("#pagi")
+                        .append($('<li>')
+                            .attr("onclick", "return false;")
+                            .addClass("page-item active")
+                            .append($('<span>')
+                                .addClass("page-link")
+                                .text(j)));
                 } else {
-                    pagi$.append($('<li class="page-item" onclick="buildEmployeesTable(' + j + ')">/')
-                        .html('<span class="page-link">' + j + '</span>'));
+                    $("#pagi")
+                        .append($('<li>')
+                            .attr("onclick", "buildEmployeesTable(" + j + ");")
+                            .addClass("page-item")
+                            .append($('<span>')
+                                .addClass("page-link")
+                                .text(j)));
                 }
             }
-        }
-    };
-    request.open("POST", "EmployeeListData?page=" + page
-        + "&amountOnPage=" + amountOnPage
-        + "&orderField=" + orderField, true);
-    request.send();
+        });
 }
 
 function getWorkExperience(hireDate) {
