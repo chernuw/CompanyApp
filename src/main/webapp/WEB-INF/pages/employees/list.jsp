@@ -29,7 +29,6 @@
 <div class="container-fluid">
     <div class="row">
         <%--Left menu--%>
-        <%--TODO: add edit and delete data of dept\pos on this modals--%>
         <nav class="col-2 bg-light border">
             <div class="collapse bd-links">
                 <div class="bd-toc-item">
@@ -233,7 +232,8 @@
                                                 <button type="reset" class="btn btn-secondary">
                                                     Reset
                                                 </button>
-                                                <button type="button" class="btn btn-danger" id="btnDeleteEmployee">
+                                                <button type="button" class="btn btn-danger" id="btnDeleteEmployee"
+                                                        data-dismiss="modal">
                                                     Delete
                                                 </button>
                                                 <input type="submit" class="btn btn-primary" value="Save"/>
