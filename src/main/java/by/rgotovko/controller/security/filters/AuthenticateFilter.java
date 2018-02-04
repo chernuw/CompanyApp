@@ -1,4 +1,4 @@
-package by.rgotovko.controller.security;
+package by.rgotovko.controller.security.filters;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -18,8 +18,10 @@ public class AuthenticateFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) resp;
         String uri = httpRequest.getRequestURI();
         HttpSession session = httpRequest.getSession();
-        if (session.getAttribute("userLogin") != null || uri.matches(".+\\..+")
-                || uri.endsWith("Authenticate") || uri.endsWith("Login")) {
+        if (session.getAttribute("userLogin") != null
+                || uri.matches(".+\\..+")
+                || uri.endsWith("Authenticate")
+                || uri.endsWith("Login")) {
             chain.doFilter(req, resp);
         } else {
             httpResponse.sendRedirect("Login");
