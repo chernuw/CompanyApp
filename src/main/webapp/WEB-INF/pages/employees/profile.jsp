@@ -81,7 +81,7 @@
                     <div class="page_actions clearfix">
                         <%--Show profile edite modal--%>
                         <button type="button" id="profile_edit_button" data-toggle="modal"
-                                data-target="#profileModal" class="btn col-12">
+                                data-target="#updateProfileModal" class="btn col-12">
                             Edit
                         </button>
                             <%--Modal for changing password. Calling from profile editing modal--%>
@@ -162,7 +162,7 @@
                         </div>
                             <%--Modal for edit profile--%>
                         <div id="edit_profile_modal">
-                            <div class="modal fade" id="profileModal" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="updateProfileModal" tabindex="-1" role="dialog"
                                  aria-labelledby="editProfileTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
