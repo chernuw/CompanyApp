@@ -18,14 +18,6 @@ public class EmployeeList extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            int amountEmployees = DAOFactory.getEmployeeDAO().getAllEmployees().size();
-            request.setAttribute("amountEmployees", amountEmployees);
-            request.getRequestDispatcher("WEB-INF/pages/employees/list.jsp").forward(request,
-                    response);
-        } catch (DAOException e) {
-            throw new ServletException(e);
-        }
-
+        request.getRequestDispatcher("WEB-INF/pages/employees/list.jsp").forward(request, response);
     }
 }
