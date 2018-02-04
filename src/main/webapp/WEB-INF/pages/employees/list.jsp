@@ -18,7 +18,8 @@
     <script type="text/javascript" src="resources/js/list/employeeModal.js"></script>
     <script type="text/javascript" src="resources/js/list/employeesTable.js"></script>
     <script type="text/javascript" src="resources/js/list/positionDepartmentList.js"></script>
-    <script type="text/javascript" src="resources/js/validators.js"></script>
+    <script type="text/javascript" src="resources/js/profile/changePassword.js"></script>
+    <script type="text/javascript" src="resources/js/profile/validators.js"></script>
 </head>
 <body>
 
@@ -28,7 +29,7 @@
 <div class="container-fluid">
     <div class="row">
         <%--Left menu--%>
-        <%--TODO: add edit and delete data on this modals--%>
+        <%--TODO: add edit and delete data of dept\pos on this modals--%>
         <nav class="col-2 bg-light border">
             <div class="collapse bd-links">
                 <div class="bd-toc-item">
@@ -241,6 +242,82 @@
                                         </div>
                                     </form>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%--Modal for changing password. Calling from profile editing modal--%>
+                <div id="password_change_modal">
+                    <div class="modal fade" id="changePasswordModal" tabindex="1" role="dialog"
+                         aria-labelledby="changePasswordTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="changePasswordTitle">Change password</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form method="post" id="changePasswordForm" class="" novalidate>
+                                    <input type="hidden" name="idEmployeePassword" id="idEmployeePassword">
+                                    <div class="form-group">
+                                        <div class="modal-body">
+                                            <div class="alert alert-danger" id="passDangAlert"
+                                                 role="alert">
+                                            </div>
+                                            <div class="alert alert-success" id="passSucChangAlert"
+                                                 role="alert">
+                                                Password successfully updated
+                                            </div>
+                                            <div class="form-group form-row">
+                                                <label class="col-5 col-form-label" for="currentPassword">
+                                                    Current password:
+                                                </label>
+                                                <div class="col-7">
+                                                    <input type="password" id="currentPassword"
+                                                           name="oldPassword" placeholder="Current password"
+                                                           class="form-control" minlength="4" maxlength="30"
+                                                           required>
+                                                    <div class="invalid-feedback">
+                                                        Enter current password
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-row">
+                                                <label class="col-5 col-form-label" for="newPassword">
+                                                    New password:
+                                                </label>
+                                                <div class="col-7">
+                                                    <input type="password" id="newPassword" name="newPassword"
+                                                           placeholder="New password" class="form-control"
+                                                           minlength="4" maxlength="30" required>
+                                                    <div class="invalid-feedback">
+                                                        Minimum password length 4 symbols
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-row">
+                                                <label class="col-5 col-form-label" for="repeatPassword">
+                                                    Repeat new password
+                                                </label>
+                                                <div class="col-7">
+                                                    <input type="password" id="repeatPassword"
+                                                           name="repeatPassword" placeholder="Repeat password"
+                                                           class="form-control" minlength="4" maxlength="30"
+                                                           required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <input type="submit" class="btn btn-primary" value="Save">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -26,6 +26,7 @@ function fillModal(id) {
         .done(function (list) {
             var data = JSON.parse(list);
             $('#employeeId').val(data.employeeId);
+            $('#idEmployeePassword').val(data.employeeId);
             $("#login").val(data.user.login);
             $('#firstName').val(data.firstName);
             $('#middleName').val(data.middleName);

@@ -14,16 +14,18 @@ $(document).ready(function () {
     });
 
     function diffNewAndRepPass() {
-        if($("#newPassword").val() !== $("#repeatPassword").val()){
+        if ($("#newPassword").val() !== $("#repeatPassword").val()) {
             $("#repeatPassword")
                 .removeClass("is-valid")
                 .addClass("is-invalid");
             $("#passDangAlert").css('display', 'block').text("New password and repeated new password did" +
                 " not match.");
             return true;
-        }else{
+        } else {
             $("#repeatPassword").removeClass("is-invalid");
-            $("#passDangAlert").css('display', 'none').text("");
+            $("#passDangAlert")
+                .css('display', 'none')
+                .text("");
             return false;
         }
     }
@@ -66,8 +68,16 @@ $(document).ready(function () {
         }
     });
 
-    $("#changePasswordModal").on('hidden.bs.modal', function () {
-        $('#updateProfileModal').modal('show');
-        $("#changePasswordForm")[0].reset();
-    });
+    $("#changePasswordModal")
+        .on('hidden.bs.modal', function () {
+            $("#changePasswordForm")[0].reset();
+        })
+        .on('show.bs.modal', function () {
+            document.getElementById("changePasswordForm").classList.remove('was-validated');
+            $("#passDangAlert")
+                .css('display', 'none')
+                .text("");
+            $("#passSucChangAlert").css('display', 'none');
+        });
+
 });
