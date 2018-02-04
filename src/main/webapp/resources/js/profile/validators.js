@@ -63,14 +63,14 @@ $(document).ready(function () {
         }
 
 
-        var addEmployeeForm = document.getElementById("employeeForm");
-        if (addEmployeeForm != null) {
-            addEmployeeForm.addEventListener('submit', function (event) {
-                if (validE === false || addEmployeeForm.checkValidity() === false) {
+        var employeeForm = document.getElementById("employeeForm");
+        if (employeeForm != null) {
+            employeeForm.addEventListener('submit', function (event) {
+                if (validE === false || employeeForm.checkValidity() === false) {
                     event.preventDefault();
                     event.stopPropagation();
                 }
-                addEmployeeForm.classList.add('was-validated');
+                employeeForm.classList.add('was-validated');
             });
         }
 
