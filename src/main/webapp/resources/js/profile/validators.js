@@ -78,8 +78,6 @@ $(document).ready(function () {
             dateFormat: "yy-mm-dd",
             maxDate: "-14y",
             minDate: "-100y",
-            showOn: "both",
-            buttonText: "Calendar",
             changeMonth: true,
             changeYear: true
         });
@@ -88,8 +86,6 @@ $(document).ready(function () {
             dateFormat: "yy-mm-dd",
             maxDate: "+2m",
             minDate: "-20y",
-            showOn: "both",
-            buttonText: "Calendar",
             changeMonth: true,
             changeYear: true
         });
