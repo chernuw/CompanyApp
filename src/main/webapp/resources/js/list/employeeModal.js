@@ -7,6 +7,12 @@ $(document).ready(function () {
                 .removeAttr("hidden")
                 .removeAttr("onclick");
             $("#employeeId").val("");
+            $("#department option").each(function () {
+                $(this).removeAttr("selected");
+            });
+            $("#position option").each(function () {
+                $(this).removeAttr("selected");
+            });
         })
         .on("shown.bs.modal", function () {
             var id = $('#employeeId').val();
@@ -37,8 +43,8 @@ function fillModal(id) {
             $('#email').val(data.email);
             $('#phone').val(data.phone);
             $('#address').val(data.address);
-            getDepartments($('#department'), data.department);
-            getPositions($('#position'), data.position);
+            selectDepartment(data.department);
+            selectPosition(data.position);
             $('#hireDate').val(data.hireDate);
         })
         .fail(function (data) {
@@ -46,35 +52,18 @@ function fillModal(id) {
         });
 }
 
-
-function getDepartments(select, employeeDepartment) {
-    $.post("DepartmentList")
-        .done(function (data) {
-            JSON.parse(data).forEach(function (value) {
-                if (value === employeeDepartment) {
-                    select.append($('<option/>').text(value).attr("selected", "selected"));
-                } else {
-                    select.append($('<option/>').text(value));
-                }
-            });
-        })
-        .fail(function () {
-            alert("fail");
-        });
+function selectDepartment(employeeDepartment) {
+    $("#department option").each(function () {
+        if ($(this).val() === employeeDepartment) {
+            $(this).attr("selected", "selected");
+        }
+    });
 }
 
-function getPositions(select, employeePosition) {
-    $.post("PositionList")
-        .done(function (data) {
-            JSON.parse(data).forEach(function (value) {
-                if (value === employeePosition) {
-                    select.append($('<option/>').text(value).attr("selected", "selected"));
-                } else {
-                    select.append($('<option/>').text(value));
-                }
-            });
-        })
-        .fail(function () {
-            alert("fail");
-        });
+function selectPosition(employeePosition) {
+    $("#position option").each(function () {
+        if ($(this).val() === employeePosition) {
+            $(this).attr("selected", "selected");
+        }
+    });
 }

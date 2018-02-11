@@ -8,7 +8,7 @@ function getDepartments(select) {
     $.post("DepartmentList")
         .done(function (data) {
             JSON.parse(data).forEach(function (value) {
-                select.append($('<option/>').text(value));
+                $(select).append($('<option/>').text(value));
             });
         })
         .fail(function () {
@@ -20,7 +20,7 @@ function getPositions(select) {
     $.post("PositionList")
         .done(function (data) {
             JSON.parse(data).forEach(function (value) {
-                select.append($('<option/>').text(value));
+                $(select).append($('<option/>').text(value));
             });
         })
         .fail(function () {
