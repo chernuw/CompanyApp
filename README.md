@@ -19,16 +19,18 @@ Test project for IBA
 Login/password
 1. admin/1234
 2. user/1234
+# Nuance
+Deleting and editing departments and positions available  only in database
 ## Database schema
 ![alt text](https://pp.userapi.com/c830709/v830709665/5c4d2/TH8qsvXsia8.jpg)
 # Interface
 ## Employee page
-![alt text](https://pp.userapi.com/c840639/v840639528/4d296/45VcGE-I1Sg.jpg)
+![alt text](https://pp.userapi.com/c834303/v834303322/aaa5a/DMxq3Zn24pA.jpg)
 ## Data editing modal for user
-![alt text](https://pp.userapi.com/c840639/v840639528/4d2a0/rl3W-3vkNpg.jpg)
-## Data editing modal for admin
-![alt text](https://pp.userapi.com/c834400/v834400528/a31e5/3iwA5HRVcwM.jpg)
+![alt text](https://pp.userapi.com/c834303/v834303322/aaa64/yxemJz3sKoA.jpg)
 ## Edit photo modal
-![alt text](https://pp.userapi.com/c834400/v834400528/a31db/HY6cduVEJM4.jpg)
+![alt text](https://pp.userapi.com/c834303/v834303322/aaa86/lU3h63LbXQI.jpg)
 ## Admin section
-![alt text](https://pp.userapi.com/c840639/v840639528/4d2be/UY8ctidGmn4.jpg)
+![alt text](https://pp.userapi.com/c834303/v834303322/aaa6e/eWEq7j_QxGQ.jpg)
+## Data editing modal for admin
+![alt text](https://pp.userapi.com/c834303/v834303322/aaa78/dj1zp8P4BJk.jpg)
