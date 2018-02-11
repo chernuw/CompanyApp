@@ -203,7 +203,7 @@
                                                         <label class="col-3 col-form-label" for="birthDate">Birth
                                                             Date:</label>
                                                         <input type="text" id="birthDate" name="birthDate" required
-                                                               readonly class="form-control col-7"
+                                                               readonly class="form-control col-9 bg-white"
                                                                placeholder="YYYY-MM-DD">
                                                     </div>
                                                     <hr>
